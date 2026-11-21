@@ -78,6 +78,16 @@ public class ServicioConsultaReservas {
     }
 
     @Transactional(readOnly = true)
+    public Pagina<ReservaResumenDto> listar(FiltroReservas filtro, Actor actor) {
+        Pagina<ReservaResumenDto> resultado = listar(filtro);
+        List<ReservaResumenDto> elementos = resultado.elementos().stream()
+                .map(reserva -> reserva.conEstadosSiguientes(maquina.destinos(EstadoReserva.valueOf(reserva.estado()), actor)
+                        .stream().map(EstadoReserva::name).toList()))
+                .toList();
+        return new Pagina<>(elementos, resultado.pagina(), resultado.tamano(), resultado.totalElementos(), resultado.totalPaginas());
+    }
+
+    @Transactional(readOnly = true)
     public VentasDto listarVentas(FiltroReservas filtro) {
         validar(filtro);
         return consulta.listarVentas(filtro, pagina(filtro.pagina()), tamano(filtro.tamano()));
