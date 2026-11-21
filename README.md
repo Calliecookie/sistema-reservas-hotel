@@ -2,7 +2,7 @@
 
 Plataforma web para reservar habitaciones en línea y administrar la operación de un hotel. Proyecto de la unidad didáctica Taller de Programación Web, IESTP "José Pardo", 2026-II.
 
-**Versión 2.0.0** (9 de noviembre de 2026). Las novedades y correcciones están en el [registro de cambios](CHANGELOG.md).
+**Versión 3.0.0** (10 de noviembre de 2026). Las novedades y correcciones están en el [registro de cambios](CHANGELOG.md).
 
 ## Estado de verificación
 
@@ -11,7 +11,7 @@ Verificado el 2 de noviembre de 2026 en Linux con JDK 21, Maven 3.9, MySQL 8.0.4
 | Verificación | Resultado |
 |---|---|
 | Compilación con Maven | Aprobada |
-| 116 pruebas automatizadas: 32 unitarias y 84 de integración contra MySQL, incluida la concurrencia de reservas | Aprobadas (9 de noviembre de 2026) |
+| 125 pruebas automatizadas: 32 unitarias y 93 de integración contra MySQL, incluida la concurrencia de reservas | Aprobadas (10 de noviembre de 2026) |
 | Comprobantes PDF y reportes en PDF y Excel | Generados y revisados |
 | Envío de correo con el comprobante adjunto | Verificado con un servidor SMTP de pruebas (GreenMail) |
 | Recorrido de las 21 pantallas de los tres roles en Chromium, escritorio y móvil | Sin errores de JavaScript, respuestas fallidas, imágenes rotas ni desborde horizontal |
@@ -29,14 +29,15 @@ Spring Boot 3.5 es la última línea compatible con Tomcat 10.1. Su soporte grat
 
 ## Inicio rápido
 
+Con JDK 21 y MySQL 8 encendido (usuario `root` sin contraseña), abre el proyecto en NetBeans y pulsa **Run**, o ejecuta:
+
 ```bash
-mysql -u root -p < base-datos/esquema.sql
-mysql -u root -p < base-datos/datos-iniciales.sql
-cp .env.example .env
 mvn spring-boot:run
 ```
 
-Antes de arrancar, completa `BD_CONTRASENA`, `ADMIN_INICIAL_CONTRASENA`, `ADMIN_CLAVE_RECUPERACION` y `DEMO_CONTRASENA` en `.env`. Luego abre `http://localhost:8080`.
+El primer arranque crea la base de datos, las tablas y los datos de demostración. Abre `http://localhost:8080` y entra con `admin@hotelintiwasi.pe` / `AdminHotel2026`.
+
+Si tu MySQL tiene contraseña, o quieres activar el correo y la consulta de DNI, crea un `.env` a partir de `.env.example`.
 
 Si ya tenías la base creada con la versión anterior, ejecuta una vez `mysql -u root -p < base-datos/migracion-estado-habitaciones.sql`.
 
@@ -66,3 +67,4 @@ Si ya tenías la base creada con la versión anterior, ejecuta una vez `mysql -u
 | [Protección contra DDoS](documentacion/05-proteccion-ddos.md) | Capas, límites y alcances |
 | [Pruebas](documentacion/06-pruebas.md) | Matriz de cobertura |
 | [Guion de sustentación](documentacion/07-guion-sustentacion.md) | Demostración de los seis hitos |
+| [Informe de titulación](documentacion/informe/Informe-Proyecto-de-Titulacion-Hotel-Inti-Wasi.docx) | Informe completo en Word, con versión en [PDF](documentacion/informe/Informe-Proyecto-de-Titulacion-Hotel-Inti-Wasi.pdf) |

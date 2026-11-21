@@ -137,7 +137,6 @@ public class ServicioHabitacionAdmin {
         } catch (IllegalArgumentException excepcion) {
             throw ExcepcionNegocio.solicitudInvalida("El estado de la habitación no es válido.");
         }
-
         if (!EstadoHabitacion.MANUALES.contains(estado)) {
             estado = EstadoHabitacion.DISPONIBLE;
         }

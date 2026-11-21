@@ -51,7 +51,6 @@ public class ServicioCambioEstadoReserva {
             default -> throw ExcepcionNegocio.solicitudInvalida(
                     "El estado " + destino.getEtiqueta() + " lo asigna el sistema.");
         }
-
         if (destino != EstadoReserva.PAGADO && destino != EstadoReserva.CANCELADO) {
             repositorioReserva.buscarPorCodigo(codigo).ifPresent(reserva -> publicador.publishEvent(
                     new EventoEstadoReservaCambiado(reserva.getId(), destino.getEtiqueta(), motivo.isEmpty() ? null : motivo)));

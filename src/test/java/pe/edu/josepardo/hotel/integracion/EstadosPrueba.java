@@ -128,7 +128,6 @@ class EstadosPrueba extends BasePruebaIntegracion {
 
         String codigoOtra = reservar(LocalDate.now(), 8L);
         cambiar(codigoOtra, Map.of("estado", "PAGADO", "metodo", "EFECTIVO")).andExpect(status().isOk());
-
         String cuerpoOcho = json.writeValueAsString(Map.of("numero", "302", "nombre", "Matrimonial Terraza", "categoriaId", 3,
                 "descripcion", "Terraza privada", "capacidad", 2, "precioNoche", "340.00",
                 "estado", "DISPONIBLE", "caracteristicaIds", List.of(1)));
